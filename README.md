@@ -1,4 +1,4 @@
-# Intraoral Orthodontic Force Monitoring — Sensor Firmware
+# Intraoral Orthodontic Force Monitoring — Sensor Firmware and Reader
 
 Firmware for the battery-free, wireless intraoral orthodontic force sensing
 system (BWS) described in:
@@ -11,9 +11,10 @@ system (BWS) described in:
 ## Overview
 
 The BWS is a flexible, battery-free sensor that is powered and read by a
-commercial UHF RFID reader. This repository contains the **sensor-side
-firmware** only; the reader is an off-the-shelf UHF RFID reader and no reader
-firmware is included.
+commercial UHF RFID reader. This repository contains both the **sensor
+firmware** and the **reader software** used in the prototype (ST25RU3993
+STUHFL reader, live force plot, Arduino/phyphox display and validation
+scripts).
 
 | Component | Part |
 |---|---|
@@ -46,6 +47,12 @@ no Impinj MonzaX API library is required or included.
 ├── lnk_msp430fr2433.cmd    # TI linker command file (BSD)
 ├── targetConfigs/          # CCS target configuration
 ├── .cproject / .project    # CCS project metadata
+├── reader/                 # ST25RU3993 reader, Arduino bridge, validation
+│   ├── bwofss_reader.py
+│   ├── stuhfl_common.py
+│   ├── modbus_rtu.py
+│   ├── arduino/Phyphon_orthodontic.ino
+│   └── validation/
 ├── THIRD_PARTY_NOTICES.md
 ├── CITATION.cff
 └── LICENSE
@@ -59,14 +66,31 @@ no Impinj MonzaX API library is required or included.
 4. Build and flash with an MSP-FET / eZ430 probe, or use the Spy-Bi-Wire
    interface of the BWS board.
 
-No external files need to be downloaded: the only third-party source files are
-TI's BSD-licensed startup hook and linker command file.
+No external files need to be downloaded for the sensor: the only third-party
+source files are TI's BSD-licensed startup hook and linker command file.
+
+## Reader
+
+The reader uses an **ST25RU3993** UHF RFID evaluation board to read the Monza
+X-8k tag in the BWS. It reads 8 bytes from the EPC memory bank, takes the
+16-bit ADC value from bytes 4–5, subtracts a no-load zero point and converts to
+force with the paper's `50.04` counts/N factor. It also provides:
+
+- a live PyQtGraph force plot;
+- CSV logging;
+- an Arduino/phyphox BLE bridge for displaying force on a phone;
+- validation scripts for a commercial force meter and a temperature/humidity
+  sensor.
+
+The ST25RU3993 STUHFL SDK v3.0.2.0 is **not** bundled. See
+[reader/README.md](reader/README.md) for hardware, SDK/wrapper setup,
+calibration and run instructions.
 
 ## License
 
-The MIT license in [LICENSE](LICENSE) covers the original firmware authored by
-Pengyu Li. Third-party files remain under their own licenses — see
-[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+The MIT license in [LICENSE](LICENSE) covers the original firmware and reader
+code authored by Pengyu Li. Third-party files remain under their own licenses —
+see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Citation
 

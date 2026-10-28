@@ -24,6 +24,13 @@
 # Exported project backups
 **/*_initial
 
+# Python reader
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+reader/**/*.csv
+
 # OS / editor
 Thumbs.db
 Desktop.ini
