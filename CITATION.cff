@@ -1,0 +1,66 @@
+cff-version: 1.2.0
+message: "If you use this firmware, please cite the paper listed in preferred-citation."
+title: "Intraoral Orthodontic Force Monitoring: Sensor Firmware"
+abstract: >-
+  Firmware for a battery-free, wireless intraoral orthodontic force sensing
+  system. The MSP430FR2433 samples an INA333-amplified MEMS strain gauge with
+  its 10-bit ADC and writes the result to an Impinj Monza X-8k RFID chip over
+  I2C, where it is read by a commercial UHF RFID reader.
+type: software
+authors:
+  - family-names: Li
+    given-names: Pengyu
+  - family-names: Zhu
+    given-names: Luying
+  - family-names: Ding
+    given-names: Yongtao
+  - family-names: Long
+    given-names: Zhihe
+  - family-names: Yang
+    given-names: Yanqi
+  - family-names: Pan
+    given-names: Jia
+  - family-names: Gu
+    given-names: Min
+  - family-names: Wang
+    given-names: Wenping
+  - family-names: Yang
+    given-names: Zhengbao
+year: 2024
+license: MIT
+repository-code: "https://github.com/plxxch/intraoral-orthodontic-force-monitoring"
+keywords:
+  - battery-free
+  - RFID
+  - orthodontic force
+  - intraoral sensor
+  - MSP430FR2433
+  - Monza X-8k
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Li
+      given-names: Pengyu
+    - family-names: Zhu
+      given-names: Luying
+    - family-names: Ding
+      given-names: Yongtao
+    - family-names: Long
+      given-names: Zhihe
+    - family-names: Yang
+      given-names: Yanqi
+    - family-names: Pan
+      given-names: Jia
+    - family-names: Gu
+      given-names: Min
+    - family-names: Wang
+      given-names: Wenping
+    - family-names: Yang
+      given-names: Zhengbao
+  title: "RF energy harvesting for intraoral orthodontic force monitoring"
+  year: 2024
+  journal: "Nano Energy"
+  volume: 121
+  start: 109244
+  end: 109244
+  doi: "10.1016/j.nanoen.2023.109244"
